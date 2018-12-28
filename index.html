@@ -1,0 +1,74 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <title>chord chart</title>
+    <style>
+.chordchart {
+    font: monospace;
+    white-space: pre;
+    line-height: 2.5em;
+}
+
+span[data-chord]:before {
+    position    : relative;
+    top         : -1em;
+    display     : inline-block;
+    content     : attr(data-chord);
+    width       : 0;
+    font-style  : italic;
+    font-weight : bold;
+}
+    </style>
+</head>
+<body>
+    <div class="chordchart" contenteditable>
+        <span data-chord="C">T</span>his line has a C chord, and it 
+        also  <span data-chord="G"></span>  has ㅇㅇ 안<span data-chord="C/E">녕</span> an <span data-chord="F">F</span> chord
+        <span data-chord="">녕</span>
+        <span data-chord=""></span>.
+    </div>
+    <script>
+    function pasteHtmlAtCaret(html, selectPastedContent) {
+        const sel = window.getSelection();
+        const range = sel.getRangeAt(0);
+        console.log(range);
+        // if (sel.getRangeAt && sel.rangeCount) {
+        //     range = sel.getRangeAt(0);
+        //     range.deleteContents();
+
+        //     // Range.createContextualFragment() would be useful here but is
+        //     // only relatively recently standardized and is not supported in
+        //     // some browsers (IE9, for one)
+        //     var el = document.createElement("div");
+        //     el.innerHTML = html;
+        //     var frag = document.createDocumentFragment(), node, lastNode;
+        //     while ( (node = el.firstChild) ) {
+        //         lastNode = frag.appendChild(node);
+        //     }
+        //     var firstNode = frag.firstChild;
+        //     range.insertNode(frag);
+            
+        //     // Preserve the selection
+        //     if (lastNode) {
+        //         range = range.cloneRange();
+        //         range.setStartAfter(lastNode);
+        //         if (selectPastedContent) {
+        //             range.setStartBefore(firstNode);
+        //         } else {
+        //             range.collapse(true);
+        //         }
+        //         sel.removeAllRanges();
+        //         sel.addRange(range);
+        //     }
+        // }
+    }
+    document.querySelector('.chordchart').onclick = function() {
+        pasteHtmlAtCaret('<span data-chord="D"></span>');
+    };
+    Array.from(document.querySelectorAll('span[data-chord]')).forEach((elem) => {
+        elem.onclick = () => {
+            alert(1);
+        };
+    });
+    </script>
+</body>

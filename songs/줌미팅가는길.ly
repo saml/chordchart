@@ -1,6 +1,6 @@
 \header {
-  title = "Road to Zoom meeting"
-  composer = "@joejobbs"
+  title = "Road to Zoom meetings"
+  composer = "@"
 }
 	
 
@@ -11,9 +11,7 @@ melody = \relative c' {
   \numericTimeSignature
   \time 4/4
 
-\override VerticalAxisGroup.default-staff-staff-spacing.basic-distance = #20
-
-  d8 fis8~ fis8 g8 fis8 e16 d16~ d cis8. a1
+  d8 fis8~ fis8 g8 fis8 e16 d16~ d cis8. a1 
   d8 fis8~ fis8 g8 fis8 e16 d16~ d b'8. a2.~ a8 e8 \break
   g4. e8 g8 e8 g8 ees8
   \tuplet 3/2 { d f aes }
@@ -56,13 +54,13 @@ melody = \relative c' {
 }
 
 harmonies = \chordmode {
-  d1 g1 d1 g1 c1 f2:dim7 a2:7 a2:7.9+
-  d1 g1 d1 g1 c1 f2:dim7 a2:7 a2:7.9+
+  d1 g1 d1 g1 c1 f4:dim7 g:7 a2:7 a2:7.9+
+  d1 g1 d1 g1 c1 f4:dim7 g:7 a2:7 a2:7.9+
 
-  d1:m g1:m d1:m g1:m ees1 f2:dim7 a2:7
+  d1:m g1:m d1:m g1:m ees1 f4:dim7 g:7 a2:7
   d:m
 
-  d4:maj7 d:7 g:maj7 g:m7 fis:m7+ f:dim7 a:7 d:9 
+  d4:maj7 d:7 g:maj7 g:m7 fis:m7+ f:dim7 a:7 d:9
 }
 
 \score {
@@ -75,7 +73,7 @@ harmonies = \chordmode {
   >>
   
   \layout{
-   
+
     }
   \midi { }
 }

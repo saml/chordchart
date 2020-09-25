@@ -4,7 +4,6 @@
     <title>chord chart</title>
     <style>
 .chordchart {
-    font: monospace;
     white-space: pre;
     line-height: 2.5em;
 }
@@ -28,47 +27,16 @@ span[data-chord]:before {
         <span data-chord=""></span>.
     </div>
     <script>
-    function pasteHtmlAtCaret(html, selectPastedContent) {
-        const sel = window.getSelection();
-        const range = sel.getRangeAt(0);
-        console.log(range);
-        // if (sel.getRangeAt && sel.rangeCount) {
-        //     range = sel.getRangeAt(0);
-        //     range.deleteContents();
-
-        //     // Range.createContextualFragment() would be useful here but is
-        //     // only relatively recently standardized and is not supported in
-        //     // some browsers (IE9, for one)
-        //     var el = document.createElement("div");
-        //     el.innerHTML = html;
-        //     var frag = document.createDocumentFragment(), node, lastNode;
-        //     while ( (node = el.firstChild) ) {
-        //         lastNode = frag.appendChild(node);
-        //     }
-        //     var firstNode = frag.firstChild;
-        //     range.insertNode(frag);
-            
-        //     // Preserve the selection
-        //     if (lastNode) {
-        //         range = range.cloneRange();
-        //         range.setStartAfter(lastNode);
-        //         if (selectPastedContent) {
-        //             range.setStartBefore(firstNode);
-        //         } else {
-        //             range.collapse(true);
-        //         }
-        //         sel.removeAllRanges();
-        //         sel.addRange(range);
-        //     }
-        // }
-    }
-    document.querySelector('.chordchart').onclick = function() {
-        pasteHtmlAtCaret('<span data-chord="D"></span>');
+    const chordchart = document.querySelector('.chordchart');
+    chordchart.onclick = () => {
+        const chord = prompt('Chord?', '');
+        const selection = window.getSelection();
+        const char = selection.focusNode.splitText(selection.focusOffset);
+        const rest = char.splitText(0);
+        const span = document.createElement('span');
+        span.dataset.chord = chord;
+        selection.focusNode.parentElement.insertBefore(span, rest);
+        console.log(selection, char);
     };
-    Array.from(document.querySelectorAll('span[data-chord]')).forEach((elem) => {
-        elem.onclick = () => {
-            alert(1);
-        };
-    });
     </script>
 </body>

@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <head>
     <meta charset="utf-8">
@@ -20,23 +22,36 @@ span[data-chord]:before {
     </style>
 </head>
 <body>
-    <div class="chordchart" contenteditable>
-        <span data-chord="C">T</span>his line has a C chord, and it 
+    <div class="chordchart" contenteditable><span data-chord="C">T</span>his line has a C chord, and it 
         also  <span data-chord="G"></span>  has ㅇㅇ 안<span data-chord="C#m7add5/E">녕</span>         an <span data-chord="F">F</span> chord
         <span data-chord="">녕</span>
         <span data-chord=""></span>.
     </div>
     <script>
     const chordchart = document.querySelector('.chordchart');
-    chordchart.onclick = () => {
-        const chord = prompt('Chord?', '');
-        const selection = window.getSelection();
-        const char = selection.focusNode.splitText(selection.focusOffset);
-        const rest = char.splitText(0);
-        const span = document.createElement('span');
-        span.dataset.chord = chord;
-        selection.focusNode.parentElement.insertBefore(span, rest);
-        console.log(selection, char);
+    chordchart.onclick = (event) => {
+        if (event.target.dataset.chord) {
+            const yes = confirm('Delete?');
+            if (yes) {
+                event.target.nextSibling.textContent = event.target.textContent + event.target.nextSibling.textContent;
+                event.target.remove();
+            } else {
+                const chord = prompt('Replace?', event.target.dataset.chord);
+                if (chord) {
+                    event.target.dataset.chord = chord;
+                }
+            }
+        } else {
+            const selection = window.getSelection();
+            const char = selection.focusNode.splitText(selection.focusOffset);
+            const rest = char.splitText(0);
+            const chord = prompt('Chord?', '');
+            if (chord) {
+                const span = document.createElement('span');
+                span.dataset.chord = chord;
+                selection.focusNode.parentElement.insertBefore(span, rest);
+            }
+        }
     };
     </script>
 </body>

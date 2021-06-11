@@ -3,3 +3,5 @@ author:
   name: "saml"
   github: "saml"
 description: "chordchart"
+site:
+  url: https://saml.github.io/chordchart

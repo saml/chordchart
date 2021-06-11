@@ -4,7 +4,7 @@ layout: default
 <ul class="pages">
     {% for pg in site.pages %}
         <li>
-        <a href="{{ pg.dir }}{{ pg.url }}">{% if pg.title %}{{ pg.title }}{% else %}{{ pg.url }}{% endif %}</a>
+        <a href="{{ pg.url }}">{% if pg.title %}{{ pg.title }}{% else %}{{ pg.url }}{% endif %}</a>
         </li>
     {% endfor %}
 </ul>
